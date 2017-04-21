@@ -1,0 +1,95 @@
+#CalendarMain{
+
+}
+
+/* CALENDAR MAIN HEADER */
+
+.CalendarMainHeader {
+	display:flex;
+	flex-direction: column;
+}
+
+
+.CalendarMainDays {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	margin-right: 30px;
+	margin-left: 30px;
+}
+
+.CalendarMainDays div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.CalendarMainRemote {
+	display: flex;
+	flex: 0 0 40px;
+	justify-content: space-between;
+	margin: 20px 30px 20px 30px;
+}
+.YearMonthView {
+	display:flex;
+	font-size: 200%;
+	justify-content: center;
+	align-items: center;
+	width: 20%;
+}
+.WeekControl {
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 15%;
+}
+.GoToday {
+	font-size: 110%;
+}
+
+
+
+.WeekDays{
+	display: flex;
+	flex: 0 0 50px;
+	justify-content: space-around;
+	margin-bottom: 25px;
+}
+.WeekCalendar{
+	display: flex;
+	position:relative;
+	overflow-y:scroll;
+	height:100%;
+	margin: 30px;
+}
+
+.holiday.weekCalendarWeekDay {
+	color: lightcoral;
+	border-color: lightcoral;
+}
+
+.weekCalendarWeekDay {
+	
+}
+
+.weekCalendarWeek {
+	display: flex;
+	position:relative;
+	overflow-y:scroll;
+	width:100%;
+	height:100%;
+}
+
+.weeklyDay {
+		display:flex;
+		flex-direction: column;
+		margin:0px 8px 0px 8px;
+		flex:1;
+		position:relative;
+	  background: linear-gradient(to right, 
+	                              transparent 0%, 
+	                              transparent calc(50% - 0.81px), 
+	                              rgba(236,236,236,1) calc(50% - 0.8px), 
+	                              rgba(236,236,236,1) calc(50% + 0.8px), 
+	                              transparent calc(50% + 0.81px), 
+	                              transparent 100%); 
+}

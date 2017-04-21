@@ -1,0 +1,52 @@
+.Navigation {
+  padding: 5px;
+}
+
+#nav-bar {
+  display: flex; 
+}
+
+#nav-bar a {
+  display:flex;
+  font-family: "Noto Sans", "Noto Sans CJK KR", sans-serif;
+  flex: 1;
+  justify-content: center;
+  align-items: center;  
+  color: black;
+  cursor: pointer;
+}
+#nav-bar a.active {
+  display:flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #23D886;
+  text-decoration: none;
+}
+
+#nav-bar a:hover{
+  text-decoration: none;
+}
+
+#nav-bar #nav-whiteboard {
+  flex:1.5;
+}
+
+.profileCard {
+  display:flex;
+  flex-direction: column;
+}
+
+.profileCard div {
+  flex:1;
+}
+
+.addMember {
+  display:flex;
+  flex: 0 0 100px;
+  border-radius:5px;
+  justify-content: center;
+  background-color: #23D886;
+
+}

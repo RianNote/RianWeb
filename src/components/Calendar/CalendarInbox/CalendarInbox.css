@@ -1,0 +1,40 @@
+.CalendarInbox{
+	display:flex;
+	flex-direction: column;
+}
+
+.CreatePlan{
+	display:flex;
+	flex: 4;
+	flex-direction: column;
+}
+
+.CreatePlanHeader{
+	display:flex;
+	flex: 0 0 30px;
+	font-size: 180%;
+	align-items: center;
+}
+
+.CreatePlanBody{
+	display: flex;
+	flex: 1;
+}
+
+.InboxPlans{
+	display:flex;
+	flex: 6;
+	flex-direction: column;
+}
+
+.InboxPlansHeader{
+	display:flex;
+	flex: 0 0 30px;
+	font-size: 150%;
+	align-items: center;
+}
+
+.InboxPlansBody{
+	display: flex;
+	flex: 1;
+}

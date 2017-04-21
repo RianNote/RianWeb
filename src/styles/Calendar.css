@@ -1,0 +1,76 @@
+#calendar-body {
+	width: 100%;
+	height: 680px;
+	overflow-y:hidden;
+	border-collapse: separate;
+	border-spacing:10px;
+	font-family: Arial, "Hiragino Sans GB", "Microsoft Yahei", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans-serif;
+	font-size: 12px;
+	padding:20px;
+	background-color: white;
+	text-align:center;
+}
+
+#calendar-header {
+	display:flex;
+	width: 100%;
+	height: 100px;
+	background-color: #d9e6fc;
+	align-items:center;
+	justify-content: space-around;
+	font-size:30px;
+
+}
+
+#calendar-date {
+	display:flex;
+	justify-content: space-around;
+	font-size:30px;
+    border: 2px none;
+    border-radius: 10px;
+    background-color: white
+}
+
+
+#calendar-container thead td {
+    margin: 0 10px;
+    padding: 8px;
+    width:12%;
+    border: none;
+    opacity: 0.5;
+}
+
+#calendar-container tbody td {
+	text-align: right;
+	vertical-align: top;
+    height: 116px;
+    width: 12%;
+    border: none;
+    border-top: 2px solid #eee;
+    padding: 8px;
+    opacity: 0.5;
+}
+
+#calendar-container tbody td:hover {
+	background-color: #ebfaff !important;
+}
+
+#calendar-container tbody td.active {
+	background-color: #a8ffae !important;
+}
+#calendar-container td.empty{
+	border: none;
+}
+
+
+#calendar-container tbody td.holiday {
+	background-color: #ffeaf3;
+}
+
+#calendar-container tbody td.today {
+	background-color: #fff2ea;
+}
+
+#calendar-container tbody td.unactive {
+	background-color: #e5e6e8;
+}
