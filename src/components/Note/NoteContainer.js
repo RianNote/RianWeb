@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import NoteTag from "./NoteTag";
 import NoteTimeline from "./NoteTimeline";
 import NoteEditor from "./NoteEditor";
+import MockTimeline from "./NoteTimeline/MockListTimeline.js"
 import { modeChange } from "../../actions/ModeActions";
 
 @connect(mapState, mapDispatch)
@@ -20,7 +21,7 @@ export default class Note extends Component {
     return (
       <div className={`body-${mode}`}>
         <NoteTag />
-        <NoteTimeline />
+        <MockTimeline />
         <NoteEditor />
       </div>
     );
