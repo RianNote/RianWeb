@@ -12,6 +12,7 @@ export default class ProjectHomeMain extends Component {
     return (
       <div className="ProjectHomeMain">
         <ProjectCalendar Calendar={Calendar} />
+        <div className="ProjectHomeTodo"> 해야할일 </div>
       </div>
     );
   }

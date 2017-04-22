@@ -49,12 +49,6 @@ export default class TemplineBox extends Component {
         //다른 케이스는 없는듯 아무것도 않한다. 그때는
     }
 
-    componentDidUpdate(prevProps, prevState) {}
-
-    componentWillUnmount() {
-        // console.log('tempbox Unmount', this.props.timelinekey )
-    }
-
     changeLoadingComplete(a) {
         this.setState((prevState, props) => {
             return {
