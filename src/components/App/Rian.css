@@ -12,7 +12,7 @@ div {
 
 .header {
   display: grid;
-  grid-template-columns: 2fr 3fr 7fr;
+  grid-template-columns: 200px 370px 7fr;
 }
 
 

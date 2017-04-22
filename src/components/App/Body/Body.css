@@ -5,19 +5,19 @@
 
 .body-3-calendar {
   display: grid; 
-  grid-template-columns: [first] 2fr [second] 7fr [third] 3fr [forth] 0fr [fifth];
+  grid-template-columns: [first] 200px [second] 7fr [third] 370px [forth] 0fr [fifth];
 }
 .body-3 {
 	display: grid; 
-  grid-template-columns: [first] 2fr [second] 3fr [third] 7fr [forth] 0fr [fifth];
+  grid-template-columns: [first] 200px [second] 370px [third] 7fr [forth] 0fr [fifth];
 }
 .body-2 {
 	display: grid; 
-  grid-template-columns: [first] 0fr [second] 3fr [third] 7fr [forth] 2fr [fifth];
+  grid-template-columns: [first] 0fr [second] 370px [third] 7fr [forth] 200px [fifth];
 }
 .body-1 {
 	display: grid; 
-  grid-template-columns: [first] 0fr [second] 0fr [third] 10fr [forth] 2fr [fifth];
+  grid-template-columns: [first] 0fr [second] 0fr [third] 10fr [forth] 370px [fifth];
 }
 
 .left {
