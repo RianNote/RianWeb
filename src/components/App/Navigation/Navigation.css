@@ -8,7 +8,8 @@
 
 #nav-bar a {
   display:flex;
-  font-family: "Noto Sans", "Noto Sans CJK KR", sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: bold;
   flex: 1;
   justify-content: center;
   align-items: center;  

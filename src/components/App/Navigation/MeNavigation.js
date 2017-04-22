@@ -10,9 +10,9 @@ export default class MeNavigation extends Component {
   render() {
     return (
       <div id="nav-bar">
-        <NavLink exact className="link" to="/me">HOME</NavLink>
-        <NavLink exact className="link" to="/me/note">NOTE</NavLink>
-        <NavLink exact className="link" to="/me/calendar">CALENDAR</NavLink>
+        <NavLink exact className="link" to="/me">한눈에보기</NavLink>
+        <NavLink exact className="link" to="/me/note">노트</NavLink>
+        <NavLink exact className="link" to="/me/calendar">캘린더</NavLink>
       </div>
     );
   }

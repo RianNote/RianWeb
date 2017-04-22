@@ -66,7 +66,7 @@ export default class HeaderHoverMenu extends Component {
 			let currentIndex = stringProjects.indexOf(_id);
 			styleArray.push({
 				key: `/me`,
-				data: { name: "rian" },
+				data: { name: "개인" },
 				style: {
 					height: 70,
 					top: spring(top, {stiffness: 300, damping: 50} )
@@ -90,7 +90,7 @@ export default class HeaderHoverMenu extends Component {
 		} else {
 			styleArray.push({
 				key: `/me`,
-				data: { name: "rian" },
+				data: { name: "개인" },
 				style: { height: 70 }
 			});
 			if (!this.state.menuActive) {
