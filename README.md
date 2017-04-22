@@ -1,5 +1,7 @@
 # Project Rian #
 
+[![CircleCI](https://circleci.com/gh/teamRian/rian/tree/master.svg?style=svg)](https://circleci.com/gh/teamRian/rian/tree/master)
+
 Connect the team  
 
 ## Getting Started
@@ -46,17 +48,6 @@ React Dnd를 앱 전체적으로 연결해준다
 Flexbox를 활용해 responsive, clean 레이아웃
 현재 보여지고 있는 영역에서는 리얼타임 데이터를 추구한다
 드래그 앤 드롭 기능으로 일정 추가가 가능할 예정
-- FlexCalendarHeader <br>
-날짜 이동을 담당하고 요일들을 고정으로 보여준다
-- FlexCalendarBody <br>
-지금 보여지는 MonthDays의 데이터를 만들어내고
-Monthly/ Weekly로 나눠준다
-- FlexMonth <br>
-  MonthDays를 활용해 월 달력을 만들어준다
-- FlexWeek <br>
-  MonthDays를 활용해 주 달력을 만들어주고 FlexSmallBricks들을 만들어낸다
-
-
 
 ## Running the tests
 

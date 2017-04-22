@@ -12,7 +12,6 @@
 
     display: flex;
     position: absolute;
-    font-family: "Noto Sans", "Noto Sans CJK KR", sans-serif;
     z-index: 1000;
     left:0;
     right:0;

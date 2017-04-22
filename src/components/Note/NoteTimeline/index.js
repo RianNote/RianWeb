@@ -28,15 +28,16 @@ export default class NoteTimelineContainer extends Component {
   constructor(props) {
     super(props);
     this.infiniteTimelineLoader = this.infiniteTimelineLoader.bind(this);
+    console.log("browserSize: ", window.innerHeight)
     this.state = {
       renderTimeline: "Waiting you",
-      browserSize: window.innerHeight - 52
+      browserSize: window.innerHeight - 70
     };
     window.addEventListener("resize", () => {
       // console.log(window.innerHeight);
       this.setState((prevState, props) => {
         return {
-          browserSize: window.innerHeight - 52
+          browserSize: window.innerHeight - 70
         };
       });
     });
@@ -79,8 +80,7 @@ export default class NoteTimelineContainer extends Component {
   }
 
   infiniteTimelineLoader(props) {
-    var renderTimeline = props.timeline.map((a, index) => {
-      return (
+    return props.timeline.map((a, index) => (
         <ComponentStyleTimelineBox
           key={a.timelineNum}
           timelineNum={a.timelineNum}
@@ -96,25 +96,19 @@ export default class NoteTimelineContainer extends Component {
           oneOfTimelineGet={props.oneOfTimelineGet}
           TimelineUpdate={props.TimelineUpdate}
         />
-      );
-    });
-    return (
-      <Infinite
-        className="NoteTimeline"
-        containerHeight={this.state.browserSize}
-        elementHeight={150}
-        timeScrollStateLastsForAfterUserScrolls={0}
-      >
-        {renderTimeline}
-      </Infinite>
-    );
+      ))
   }
 
   render() {
     return (
-      <div className="timeline">
+      <Infinite
+        // className="NoteTimeline"
+        containerHeight={this.state.browserSize}
+        elementHeight={130}
+        timeScrollStateLastsForAfterUserScrolls={0}
+      >
         {this.state.renderTimeline}
-      </div>
+      </Infinite>
     );
   }
 }
@@ -141,7 +135,6 @@ function mapDispatch(dispatch) {
     changeTimelineUpdate: a => dispatch(changeTimelineUpdate(a))
   };
 }
-
 
 
 

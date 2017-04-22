@@ -1,7 +1,14 @@
 .ProjectHomeMain {
-
+	display:flex;
+	flex-direction: column;
 }
 
 #ProjectCalendar {
-	
+	display: grid;
+	flex: 2;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.ProjectHomeTodo {
+	flex: 2;
 }
