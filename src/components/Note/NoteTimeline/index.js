@@ -102,7 +102,7 @@ export default class NoteTimelineContainer extends Component {
   render() {
     return (
       <Infinite
-        className="NoteTimeline"
+        // className="NoteTimeline"
         containerHeight={this.state.browserSize}
         elementHeight={130}
         timeScrollStateLastsForAfterUserScrolls={0}
