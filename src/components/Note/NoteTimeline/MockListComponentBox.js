@@ -13,7 +13,15 @@ const MocklineBox = ({title, final_modified_at, snippet, tag}) => {
                 </div>
                 <div className="box-bottom-bar">
                     <div className="tag-mark">
-                        <div className="color-circle"></div>
+                        <div className="color-circle tag1"></div>
+                        <div className="box-tag">{tag}</div>
+                    </div>
+                    <div className="tag-mark">
+                        <div className="color-circle tag2"></div>
+                        <div className="box-tag">{tag}</div>
+                    </div>
+                     <div className="tag-mark">
+                        <div className="color-circle tag3"></div>
                         <div className="box-tag">{tag}</div>
                     </div>
                 </div>
