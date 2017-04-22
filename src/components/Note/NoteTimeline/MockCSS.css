@@ -16,7 +16,7 @@
 }
 
 .box-title {
-	height: 31px;
+	height: 32px;
     padding-top: 12px;
     padding-left: 13px;
     padding-right: 5px;
@@ -35,9 +35,10 @@
     padding-right: 5px;
     padding-bottom: 1px;
     overflow: hidden;
-    font-size: 15px;
+    font-size: 13px;
     color: #9b9b9b;
-    line-height: 18px;
+    line-height: 24px;
+    letter-spacing: 1px;
 }
 
 .box-right-bar {
