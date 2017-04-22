@@ -9,6 +9,7 @@ import {
 } from "../../../actions/NoteEditorActions.js";
 import { noteGet } from "../../../epics/NoteEpic";
 import * as noteEpic from "../../../epics/NoteEpic";
+import './penguin.css'
 
 @connect(mapState, mapDispatch)
 export default class NoteEditorContainer extends Component {
@@ -30,28 +31,9 @@ export default class NoteEditorContainer extends Component {
   render() {
     return (
       <div className="editorContainer">
-        {this.props.onEditor &&
-          <div
-            ref="Editor"
-            style={{ margin: "0", height: "800px", position: "relative" }}
-          >
-            <RockofRian
-              user={this.props.userid}
-              notelocation={this.props.notelocation}
-              indexlocation={this.props.indexlocation}
-              inforlocation={this.props.inforlocation}
-              changeRenderedNote={this.props.changeRenderedNote}
-              allofTimelineGet={this.props.allofTimelineGet}
-            />
-          </div>}
-        {!this.props.onEditor &&
-          <Button
-            onClick={() => {
-              this.props.changeEditorState(true);
-              this.props.changeRenderedNote(false);
-            }}
-          />}
-
+        <div className="penguin">
+          <img src={require("../rian_1024.png")} height="600" width="570" />
+        </div>
       </div>
     );
   }
@@ -77,4 +59,26 @@ function mapDispatch(dispatch) {
     allofTimelineGet: sorting => dispatch(noteGet(sorting))
   };
 }
+
+  // {this.props.onEditor &&
+  //         <div
+  //           ref="Editor"
+  //           style={{ margin: "0", height: "800px", position: "relative" }}
+  //         >
+  //           <RockofRian
+  //             user={this.props.userid}
+  //             notelocation={this.props.notelocation}
+  //             indexlocation={this.props.indexlocation}
+  //             inforlocation={this.props.inforlocation}
+  //             changeRenderedNote={this.props.changeRenderedNote}
+  //             allofTimelineGet={this.props.allofTimelineGet}
+  //           />
+  //         </div>}
+  //       {!this.props.onEditor &&
+  //         <Button
+  //           onClick={() => {
+  //             this.props.changeEditorState(true);
+  //             this.props.changeRenderedNote(false);
+  //           }}
+  //         />}
 
