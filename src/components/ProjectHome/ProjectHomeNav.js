@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import MOCK_USER from "./MockData/MOCK_USER"
+
+
 
 @connect(mapState)
 export default class ProjectHomeNav extends Component {

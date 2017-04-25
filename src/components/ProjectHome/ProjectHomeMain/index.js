@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ProjectCalendar from "./ProjectCalendar";
+import ProjectComment from "./ProjectComment";
+import ProjectFile from "./ProjectFile";
+import ProjectTodo from "./ProjectTodo";
+import MOCK_COMMENT from "../MockData/MOCK_COMMENT"
+import MOCK_FILE from "../MockData/MOCK_FILE"
+import MOCK_TODO from "../MockData/MOCK_TODO"
+
+
 
 @connect(mapState)
 export default class ProjectHomeMain extends Component {
@@ -12,6 +20,9 @@ export default class ProjectHomeMain extends Component {
     return (
       <div className="ProjectHomeMain">
         <ProjectCalendar Calendar={Calendar} />
+        <ProjectComment Data={MOCK_COMMENT} />
+        <ProjectFile Data={MOCK_FILE} />
+        <ProjectTodo Data={MOCK_TODO} />
         <div className="ProjectHomeTodo"> 해야할일 </div>
       </div>
     );
