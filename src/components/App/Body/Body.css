@@ -4,44 +4,51 @@
 
 
 .body-3-calendar {
-  display: grid; 
-  grid-template-columns: [first] 200px [second] 7fr [third] 370px [forth] 0fr [fifth];
+  flex: 1;
+  display: flex; 
+  & .left {
+    flex: 0 0 var(--subWidth);
+    display: flex;
+    flex-direction: column;
+  }
+  & .middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  & .right {
+    flex: 0 0 var(--navWidth);
+    display: flex;
+    flex-direction: column;  
+  }
 }
+
+
 .body-3 {
-	display: grid; 
-  grid-template-columns: [first] 200px [second] 370px [third] 7fr [forth] 0fr [fifth];
+  flex: 1;
+  display: flex;
+  & .left {
+    flex: 0 0 var(--subWidth);
+    display: flex;
+    flex-direction: column;
+  }
+  & .middle {
+    flex: 0 0 var(--navWidth);
+    display: flex;
+    flex-direction: column;
+  }
+  & .right {
+    flex: 1;
+    display: flex; 
+    flex-direction: column; 
+  }
 }
+
 .body-2 {
 	display: grid; 
-  grid-template-columns: [first] 0fr [second] 370px [third] 7fr [forth] 200px [fifth];
+  grid-template-columns: [first] 0fr [second] var(--navWidth) [third] 7fr [forth] var(--subWidth) [fifth];
 }
 .body-1 {
 	display: grid; 
-  grid-template-columns: [first] 0fr [second] 0fr [third] 10fr [forth] 370px [fifth];
-}
-
-.left {
-  grid-column-start: first;
-  grid-column-end: second;
-  display:flex;
-  flex-direction: column;
-  border-right: 1px solid rgba(236,236,236,1);
-}
-
-.middle {
-  grid-column-start: second;
-  grid-column-end: third;
-  display:flex;
-  justify-content: center;
-  align-items:stretch;
-  flex:1;
-}
-
-.right {
-  grid-column-start: third;
-  grid-column-end: forth;
-  display:flex;
-  justify-content: center;
-  align-items:stretch;
-  flex:1;
+  grid-template-columns: [first] 0fr [second] 0fr [third] 10fr [forth] var(--navWidth) [fifth];
 }

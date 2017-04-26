@@ -6,6 +6,8 @@ import { withRouter } from "react-router";
 import HeaderHoverMenu from "./HeaderHoverMenu";
 import MeNavigation from "../Navigation/MeNavigation";
 import ProjectNavigation from "../Navigation/ProjectNavigation";
+import HeaderProfile from "./HeaderProfile";
+
 
 import {
 	projectEpicRequestData,
@@ -82,6 +84,7 @@ export default class HeaderContainer extends React.Component {
 					<Route path="/project" component={ProjectNavigation} />
 					<Route path="/me" component={MeNavigation} />
 				</Switch>
+				<HeaderProfile />
 			</section>
 		);
 	}

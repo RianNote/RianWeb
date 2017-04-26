@@ -1,112 +1,125 @@
-var webpack = require('webpack');
-var cssnext = require('postcss-cssnext');
-var postcssFocus = require('postcss-focus');
-var postcssReporter = require('postcss-reporter');
-
+var webpack = require("webpack");
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: "cheap-module-eval-source-map",
 
   entry: {
     app: [
-      'eventsource-polyfill',
-      'webpack-hot-middleware/client',
-      'webpack/hot/only-dev-server',
-      'react-hot-loader/patch',
-      './src/index.js',
+      "eventsource-polyfill",
+      "webpack-hot-middleware/client",
+      "webpack/hot/only-dev-server",
+      "react-hot-loader/patch",
+      "./src/index.js"
     ],
-    vendor: [
-      'react',
-      'react-dom',
-    ],
+    vendor: ["react", "react-dom"]
   },
 
   output: {
     path: __dirname,
-    filename: '[name].js',
-    publicPath: 'http://0.0.0.0:8000/',
+    filename: "[name].js",
+    publicPath: "http://0.0.0.0:8000/"
   },
-
 
   module: {
     rules: [
       {
-        test: /\.scss$/,
-        exclude: /node-modules/,
-        use: [{
-            loader: "style-loader" // creates style nodes from JS strings
-        }, {
-            loader: "css-loader" // translates CSS into CommonJS
-        }, {
-            loader: "sass-loader" // compiles Sass to CSS
-        }]
-      },
-      {
         test: /\.css$/,
-        exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      },
-      {
-        test: /\.css$/,
-        include: /node_modules/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
+        // exclude: /node_modules/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: function() {
+                return [
+                  require("postcss-smart-import"),
+                  require("postcss-cssnext")({
+                    features: {
+                      customProperties: {
+                        warnings: false,
+                        variables: {
+                          headerHeight: "70px",
+                          subWidth: "200px",
+                          navWidth: "370px",
+                          rianColor: "#00da82"
+                        }
+                      },
+                      autoprefixer: {
+                        browsers: ["last 2 versions", "safari >= 8", "ie 11", "ios >= 8"],
+                        // grid: false
+                      }
+                    }
+                  })
+                  // require("precss")
+                ];
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.svg$/,
-        use: 'url-loader'
+        use: "url-loader"
       },
       {
         test: /\.jsx*$/,
         exclude: [/node_modules/, /.+\.config.js/],
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
           cacheDirectory: true, //cache directory = node_modules/.cache
-          presets: ['es2017-node7/webpack2', 'react'],
+          presets: ["es2017-node7/webpack2", "react"]
         }
-      }, 
+      },
       {
         test: /\.png$/,
-        use: { loader: 'url-loader', options: {limit: 100000} },
+        use: { loader: "url-loader", options: { limit: 100000 } }
       },
       {
         test: /\.jpg$/,
-        use: 'file-loader',
-      }, 
+        use: "file-loader"
+      },
       {
         test: /\.json$/,
-        use: 'json-loader',
+        use: "json-loader"
       },
-      { test: /\.(woff|woff2|ttf|eot)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/, 
-        use: 'url-loader?limit=100000' 
+      {
+        test: /\.(woff|woff2|ttf|eot)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
+        use: "url-loader?limit=100000"
       }
-    ],
+    ]
   },
 
   plugins: [
-    
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor'],
+      name: ["vendor"]
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['manifest'],
+      name: ["manifest"]
     }),
     new webpack.DefinePlugin({
-      'process.env': {
-        'CLIENT': JSON.stringify(true),
-        'NODE_ENV': JSON.stringify('development'),
-        'AWS_IP': JSON.stringify(process.env.IP || '0.0.0.0')
-
+      "process.env": {
+        CLIENT: JSON.stringify(true),
+        NODE_ENV: JSON.stringify("development"),
+        AWS_IP: JSON.stringify(process.env.IP || "0.0.0.0")
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        unused: true 
+        unused: true
       },
-      mangle: false,    
-      beautify: true,  
+      mangle: false,
+      beautify: true,
       output: {
-        comments: true  
+        comments: true
       }
     })
   ],
@@ -114,6 +127,4 @@ module.exports = {
   node: {
     fs: "empty"
   }
-
-  
 };

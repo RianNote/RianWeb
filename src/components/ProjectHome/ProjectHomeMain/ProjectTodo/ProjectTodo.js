@@ -35,7 +35,8 @@ export default class ProjectTodo extends Component {
 		return (
 			<Infinite
 		        className="Infinite-Box"
-		        containerHeight={this.state.browserSize}
+		        containerHeight={200}
+		        // containerHeight={this.state.browserSize}
 		        elementHeight={150}
 		        timeScrollStateLastsForAfterUserScrolls={0}
       		>

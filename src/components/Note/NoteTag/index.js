@@ -10,7 +10,7 @@ export default class NoteTag extends Component {
   }
   render() {
     return (
-      <div id="NoteTag" onClick={()=>this.props.modeChange.bind(this)(1)}>
+      <div className="left" id="NoteTag" onClick={()=>this.props.modeChange.bind(this)(1)}>
       </div>
     );
   }

@@ -9,7 +9,7 @@ export default class CalendarInbox extends Component {
 	}
 	render() {
 		return (
-			<div className="CalendarInbox">
+			<div className="right CalendarInbox">
 				<CreatePlan />
 				<InboxPlans />
 			</div>

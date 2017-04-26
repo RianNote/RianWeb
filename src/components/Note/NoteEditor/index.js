@@ -30,7 +30,7 @@ export default class NoteEditorContainer extends Component {
 
   render() {
     return (
-      <div className="editorContainer">
+      <div className="right editorContainer">
         <div className="penguin">
           <img src={require("../rian_1024.png")} height="600" width="570" />
         </div>

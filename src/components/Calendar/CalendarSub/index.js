@@ -13,7 +13,7 @@ export default class CalendarSub extends Component {
 
 	render() {
 		return (
-			<div id="CalendarSide">
+			<div className="left" id="CalendarSide">
 				<CalendarHeader
 					User={this.props.User}
 					Calendar={this.props.Calendar}

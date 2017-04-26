@@ -1,22 +1,24 @@
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
+html { 
+  font-size: 16px; 
+  overflow-y: scroll; 
+  -webkit-text-size-adjust: 16px;
+  -ms-text-size-adjust: 16px; 
+}
+
 div {
   font-family: 'Nanum Gothic', sans-serif;
+
 }
 
 .app-3 {
-  display: grid;
-  grid-template-rows: [header] 70px [header-end] auto [end];
+  display: flex;
+  flex-direction: column;
   height:100vh;
   min-width: 1500px;
-  min-height: 800px;
+  min-height: 800px; 
 }
-
-.header {
-  display: grid;
-  grid-template-columns: 200px 370px 7fr;
-}
-
 
 /* LOADING SPINNER */
 
