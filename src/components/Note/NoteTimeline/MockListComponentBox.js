@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import './MockCss.css'
 const MocklineBox = ({title, final_modified_at, snippet, tag}) => {
     return (

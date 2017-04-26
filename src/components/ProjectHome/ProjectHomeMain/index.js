@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ProjectCalendar from "./ProjectCalendar";
-import ProjectComment from "./ProjectComment";
-import ProjectFile from "./ProjectFile";
-import ProjectTodo from "./ProjectTodo";
+import ProjectComment from "./ProjectComment/ProjectComment";
+import ProjectFile from "./ProjectFile/ProjectFile";
+import ProjectTodo from "./ProjectTodo/ProjectTodo";
 import MOCK_COMMENT from "../MockData/MOCK_COMMENT"
 import MOCK_FILE from "../MockData/MOCK_FILE"
 import MOCK_TODO from "../MockData/MOCK_TODO"
