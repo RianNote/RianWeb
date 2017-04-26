@@ -16,26 +16,30 @@ class MockDataTimeline extends Component {
         tag={data.tag}
       />
     )); 
-    const InfiniteList = (
-      <Infinite
-        className="Infinite-Box"
-        containerHeight={window.innerHeight-70}
-        elementHeight={150}
-        timeScrollStateLastsForAfterUserScrolls={0}
-      >
-        {MockList}
-      </Infinite>
-    );
     this.state = {
-      List: InfiniteList
+      List: MockList,
+      browserSize: window.innerHeight - 70
     };
+    window.addEventListener("resize", () => {
+      // console.log(window.innerHeight);
+      this.setState((prevState, props) => {
+        return {
+          browserSize: window.innerHeight - 70
+        };
+      });
+    });
   }
 
   render() {
     return (
-      <div>
+        <Infinite
+        className="Infinite-Box"
+        containerHeight={this.state.browserSize}
+        elementHeight={150}
+        timeScrollStateLastsForAfterUserScrolls={0}
+      >
         {this.state.List}
-      </div>
+      </Infinite>
     );
   }
 }
