@@ -6,12 +6,12 @@ import File from "../../File/FileContainer";
 // import AddMember from "../../ProjectHome/AddMember";
 
 const ProjectPage = () => (
-  <Switch>
-    <Route exact path="/project/:projectId" component={ProjectHome} />
-    <Route exact path="/project/:projectId/note" component={LiveNote} />
-    <Route exact path="/project/:projectId/file" component={File} />
-    <Route exact path="/project/:projectId/add-member" />
-  </Switch>
+	  <Switch>
+	    <Route exact path="/project/:projectId" component={ProjectHome} />
+	    <Route exact path="/project/:projectId/note" component={LiveNote} />
+	    <Route exact path="/project/:projectId/file" component={File} />
+	    <Route exact path="/project/:projectId/add-member" />
+	  </Switch>
 )
 
 export default ProjectPage;

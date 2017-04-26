@@ -1,0 +1,46 @@
+.projectCalendar {
+	display: flex;
+	flex-direction: column;
+	flex: 4;
+	padding: 30px;
+}
+
+.projectMonthWeek {
+	display: flex;
+	flex: 1;
+}
+
+.projectCalendarMonth {
+	display:flex;
+	flex: 2;
+	margin-top: -30px;
+	justify-content: space-around;
+	font-size: 25px;
+	align-items: center;	
+}
+
+.projectDays {
+	display:flex;
+	flex: 1;
+	flex-direction: column;
+
+}
+
+.projectMonthDate {
+	flex: 0 0 20px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.projectUncurrent{
+	color: #9b9b9b;
+}
+
+.projectToday{
+	color: #00da82;
+}
+
+.projectInfo {
+	display: flex;
+	flex: 2;
+}

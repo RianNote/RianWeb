@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from "react";
-import { Button, Modal, Glyphicon } from "react-bootstrap";
+import { Glyphicon } from "react-bootstrap";
 import { Calendar as calen } from "calendar";
 
 export default class CalendarHeader extends Component {

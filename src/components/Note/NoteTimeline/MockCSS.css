@@ -1,7 +1,8 @@
 .box-container {
-	display: grid;
-	grid-template-columns: [first] 270px [second] 30px [third] 50px [forth];
-	grid-template-rows: [begin] 120px [mid] 30px [ending];
+	display: flex;
+    flex-direction: column;
+/* 	grid-template-columns: [first] 270px [second] 30px [third] 50px [forth];
+	grid-template-rows: [begin] 120px [mid] 30px [ending]; */
 	margin-top: 10px;
 	margin-bottom: 10px ;
 	border-radius: 16px;
@@ -9,12 +10,15 @@
 }
 
 .box-body {
-	grid-column-start: first;
-	grid-column-end: third;
-	grid-row-start: begin;
-	grid-row-end: mid;
+    display: flex;
+    flex: 0 0 120px;
 }
 
+.body-text {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 300px;
+}
 .box-title {
 	height: 32px;
     padding-top: 12px;
@@ -24,7 +28,6 @@
     font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap
 }
 
 .box-snippet {
@@ -42,18 +45,16 @@
 }
 
 .box-right-bar {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 50px;
 	padding-top: 15px;
 	padding-right: 5px;
-	grid-column-start: third;
-	grid-column-end: forth;
-	grid-row-start: begin;
-	grid-row-end: mid;	
 }
 
 .box-weekday {
-	font-size: 5px;
+	font-size: 10px;
 	text-align: center;
-	/*white-space: nowrap;*/
 	color: #9b9b9b;
 }
 
@@ -65,21 +66,15 @@
 }
 
 .box-bottom-bar {
+    flex: 0 0 80px;
 	margin-top: -1px;
     padding-left: 13px;
-    grid-column-start: first;
-    grid-column-end: second;
-    grid-row-start: mid;
-    grid-row-end: ending;
     overflow: hidden;
-    white-space: nowrap;
 }
 
 .tag-mark {
+    display: flex;
  	padding-right: 10px;
-    display: inline-block;
-    width: auto;
-    max-width: 80px;
     height: 22px;
     border-radius: 16px;
     background-color: #e0e0e0;
@@ -96,6 +91,11 @@
     border-radius: 50%;
 }
 
+.box-footer {
+    display: flex;
+    flex: 0 0 30px;
+}
+
 .tag1 {
 	background-color: #50e3c2;
 }
@@ -108,13 +108,21 @@
 	background-color: #7978ff;
 }
 
-.box-tag {
+.box-tags {
+    display: flex;
+    flex: 0 0 270px;
+    padding-left: 10px;
     overflow: hidden;
+}
+.box-tag {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    max-width: 50px;
+    font-size: 10px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-top: 3px;
     padding-left: 3px;
     opacity: 0.7;
-    font-size: 1pt;
 }
 

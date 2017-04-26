@@ -3,7 +3,9 @@
 }
 
 #nav-bar {
-  display: flex; 
+  display: flex;
+  height: var(--headerHeight);
+  width: var(--navWidth);
 }
 
 #nav-bar a {
@@ -22,7 +24,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: #23D886;
+  color: var(--rianColor);
   text-decoration: none;
 }
 
@@ -48,6 +50,6 @@
   flex: 0 0 100px;
   border-radius:5px;
   justify-content: center;
-  background-color: #23D886;
+  background-color: var(--rianColor);
 
 }

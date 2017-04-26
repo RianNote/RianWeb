@@ -1,7 +1,6 @@
 
 #CalendarHeader {
 	display:flex;
-	height:7%;
 	justify-content: space-around;
 	align-items: center;
 	font-size:20px;
@@ -23,13 +22,13 @@
 }
 
 #SideMonth {
-	display: grid;
+	display: flex;
+	flex-wrap: wrap;
 	height: auto;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr);
 }
 
 #SideMonth div {
+	width: calc(var(--subWidth) * (1/7));
 	display:flex;
 	align-items: center;
 	justify-content: center;
@@ -40,7 +39,7 @@
 }
 
 .today {
-	background-color: #23D886;
+	background-color: var(--rianColor);
 	color: white;
 	border-radius: 50%;
 }

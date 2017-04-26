@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import MOCK_USER from "./MockData/MOCK_USER"
-
-
+import MOCK_USER from "../MockData/MOCK_USER"
 
 @connect(mapState)
 export default class ProjectHomeNav extends Component {
@@ -13,7 +11,7 @@ export default class ProjectHomeNav extends Component {
   render() {
     const { member, _id } = this.props.Project;
     return (
-      <div className="ProjectHomeNav">
+      <div className="left ProjectHomeNav">
         {member.map( (user,i) => {
           return (
             <div className="profileCard" key={i}>

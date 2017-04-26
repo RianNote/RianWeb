@@ -33,7 +33,7 @@ class MockDataTimeline extends Component {
   render() {
     return (
         <Infinite
-        className="Infinite-Box"
+        className="middle Infinite-Box"
         containerHeight={this.state.browserSize}
         elementHeight={150}
         timeScrollStateLastsForAfterUserScrolls={0}

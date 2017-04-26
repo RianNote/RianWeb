@@ -22,7 +22,7 @@ export default class CalendarMain extends Component {
     const weekMarker = (week*7)
     const showingWeek = monthDays.slice(weekMarker, weekMarker+7);
     return (
-      <div id="CalendarMain">
+      <div className="middle" id="CalendarMain">
         <CalendarMainHeader 
           Calendar={Calendar}
           showingWeek={showingWeek}
