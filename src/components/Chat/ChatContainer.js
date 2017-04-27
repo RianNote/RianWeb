@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ChatListBox from "./ChatListBox";
 import "./Chatstyle.css";
 import { graphql, compose } from "react-apollo";
 import {
@@ -10,31 +11,32 @@ import {
 const getPastChat = graphql(CHAT_QUERY, {
     name: "getPastChat",
     options: props => ({
-        variables: { 
-            projectid: props.match.params.projectId 
+        variables: {
+            projectid: props.match.params.projectId
         }
     })
 });
 //메시지 보내는 쿼리
 const sendChatMessage = graphql(CHAT_SEND, {
-    props: ({mutate})=>({
-        sendMessage: (message) => mutate({
-            variables: {
-                projectid: message.projectid,
-                name: message.name,
-                content: message.content,
-                date: message.date
-            }
-        }) 
+    props: ({ mutate }) => ({
+        sendMessage: message =>
+            mutate({
+                variables: {
+                    projectid: message.projectid,
+                    name: message.name,
+                    content: message.content,
+                    date: message.date
+                }
+            })
     })
-})
+});
 
 @compose(getPastChat, sendChatMessage)
 export default class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            List: "",
+            List: null,
             value: "",
             path: this.props.match.params.projectId,
             subscriptionIng: false
@@ -49,26 +51,33 @@ export default class Chat extends Component {
 
     componentWillReceiveProps(nextProps) {
         console.log("Chat", nextProps);
+        //최초 쿼리가 성공했을때, 서브스크립션 ON
+        const { getPastChat } = nextProps;
         if (nextProps.getPastChat.chatContents && !this.state.subscriptionIng) {
-            console.log('StartSubscripont')
-            const { getPastChat } = nextProps
+            console.log("StartSubscripont");
             getPastChat.subscribeToMore({
-                    document: CHAT_SUBSCRIPTION,
-                    variables: {
-                        projectid: this.state.path
-                    },
-                    updateQuery: (prev, {subscriptionData}) => {
-                        // console.log("new sub", subscriptionData.data, prev)
-                        return Object.assign({}, prev, {
-                            chatContents: [subscriptionData.data.chatSubscription, ...prev.chatContents]
-                        })
-                    }
-            })
-            this.setState(()=>({
+                document: CHAT_SUBSCRIPTION,
+                variables: {
+                    projectid: this.state.path
+                },
+                updateQuery: (prev, { subscriptionData }) => {
+                    // console.log("new sub", subscriptionData.data, prev)
+                    return Object.assign({}, prev, {
+                        chatContents: [
+                            subscriptionData.data.chatSubscription,
+                            ...prev.chatContents
+                        ]
+                    });
+                }
+            });
+            this.setState(() => ({
                 subscriptionIng: true
-            }))
+            }));
         }
-
+        console.log("getPastChat.chatContents", getPastChat.chatContents);
+        this.setState(() => ({
+            List: getPastChat.chatContents
+        }));
     }
 
     handleChange(e) {
@@ -80,40 +89,49 @@ export default class Chat extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log('this.state.value', this.state.value)
-        if (!this.state.value) return
+        if (!this.state.value) return;
         this.props.sendMessage({
             projectid: this.state.path,
-            name: "testname",
+            name: "락앤롤",
             content: this.state.value,
-            date: "testdate",            
-        })
+            date: "2017/09/30"
+        });
         this.setState(() => ({
             value: ""
         }));
     }
 
     render() {
+        let MessageList 
+        if (this.state.List) {
+            MessageList = this.state.List.map((data, index)=>{
+                return <ChatListBox key={index} name={data.name} content={data.content} date={data.date} />
+            })
+        } else {
+            MessageList = ""
+        }
         return (
-            <div className="chat-container">
-                <div className="chat-button" />
-                <div className="chat-box">
-                    <div className="message-list" />
-                    {this.state.List}
-                    <div className="send-box">
-                        <input
-                            className="text-input"
-                            type="text"
-                            value={this.state.value}
-                            placeholder="프리라이더.."
-                            onChange={this.handleChange}
-                        />
-                        <button
-                            className="send-button"
-                            onClick={this.handleSubmit}
-                            value="보내기"
-                        />
 
+            <div className="chatButton">
+                <div className="chatContainer">
+                    <div className="chatBox">
+                        <div className="sendBox">
+                            <div className="messageList">
+                                 {MessageList}
+                            </div>
+                            <input
+                                className="textInput"
+                                type="text"
+                                value={this.state.value}
+                                placeholder="프리라이더.."
+                                onChange={this.handleChange}
+                            />
+                            <button
+                                className="sendButton"
+                                onClick={this.handleSubmit}
+                                value="보내기"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

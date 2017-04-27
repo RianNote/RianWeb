@@ -1,4 +1,13 @@
-.chat-button {
+.chatContainer {
+	z-index: 10;
+	position:absolute;
+}
+
+.chatBox {
+	border: 1px solid var(--rianColor);
+}
+
+.chatButton {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;

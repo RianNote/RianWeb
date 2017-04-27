@@ -6,13 +6,13 @@ export const resolvers = {
     chatContents(obj, args, context){
       console.log('Chat', obj, args, context)
       let newObj = {}
-      newObj.name = "TestName"
-      newObj.content = "TestContent"
-      newObj.date = "TestDate"
+      newObj.name = "성찬Test"
+      newObj.content = "저는 테스트를 많이 합니다"
+      newObj.date = "2016/11/30"
       let newObj2 = {}
-      newObj2.name = "TestName"
-      newObj2.content = "TestContent"
-      newObj2.date = "TestDate"
+      newObj2.name = "덕연Test2"
+      newObj2.content = "저는 테스트를 좋아하지 않습니다"
+      newObj2.date = "2015/12/30"
       return [newObj, newObj2]
     },
   },
