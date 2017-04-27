@@ -1,10 +1,17 @@
 .chatContainer {
 	z-index: 10;
-	position:absolute;
+	position: relative;
+    right: 280px;
+    top: 40px;
+	width:300px;
+	border: thin solid var(--rianColor);
+	border-radius: 10px;
 }
 
+.messageList {
+	padding: 5px;
+}
 .chatBox {
-	border: 1px solid var(--rianColor);
 }
 
 .chatButton {
@@ -12,5 +19,76 @@
 	height: 40px;
 	border-radius: 50%;
 	background-color: #00da82;
+    margin-left: 180px;
+}
 
+.chatInput {
+	display: flex;
+	border: none;
+	border-top: thin solid var(--rianColor);
+	padding: 10px;
+}
+
+.textInput {
+	border: none;
+	flex:8;
+}
+
+.sendButton {
+	border: none;
+	background-color: white;
+	color: var(--rianColor);
+	flex:1;
+}
+
+.chatMessage {
+	display: flex;
+	padding: 5px;
+}
+
+.chatMessage.mine {
+	flex-direction: row-reverse;
+}
+
+.chatMessagePhoto {
+	display: flex;
+	flex: 0 0 35px;
+}
+
+.chatUserPhoto {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
+
+.chatMessageContent {
+	display: flex;
+	flex: 6;
+	flex-direction: column;
+}
+
+.chatMessageName {
+	display: flex;
+	flex: 0 0 20px;
+	font-weight: bold;
+}
+
+.chatMessageText {
+	display: flex;
+	flex: 0 0 20px;
+}
+
+.chatMessageText.mine {
+	flex-direction: row-reverse;
+}
+
+.chatMessageDate {
+	display: flex;
+	flex: 0 0 20px;
+	color: grey;
+	font-size: 10px;
+}
+
+.chatMessageDate.mine {
+	flex-direction: row-reverse;
 }

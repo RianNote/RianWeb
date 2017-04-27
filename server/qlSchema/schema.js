@@ -11,7 +11,7 @@ const RootQuery = `
   }
 
   type Mutation {
-     sendMessage(projectid: String!, name: String!, content: String!, date: String!): Message
+     sendMessage(projectid: String!, userid: String! name: String!, content: String!, date: String!): Message
   }
 
   type Subscription {

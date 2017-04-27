@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import ChatListBox from "./ChatListBox";
 import "./Chatstyle.css";
 import { graphql, compose } from "react-apollo";
@@ -23,6 +24,7 @@ const sendChatMessage = graphql(CHAT_SEND, {
             mutate({
                 variables: {
                     projectid: message.projectid,
+                    userid: message.userid,
                     name: message.name,
                     content: message.content,
                     date: message.date
@@ -32,10 +34,12 @@ const sendChatMessage = graphql(CHAT_SEND, {
 });
 
 @compose(getPastChat, sendChatMessage)
+@connect(mapState)
 export default class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            chatMode: false,
             List: null,
             value: "",
             path: this.props.match.params.projectId,
@@ -43,6 +47,7 @@ export default class Chat extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.clickChatButton = this.clickChatButton.bind(this);
     }
 
     componentDidMount() {
@@ -81,7 +86,6 @@ export default class Chat extends Component {
     }
 
     handleChange(e) {
-        console.log(e.target.value);
         this.setState({
             value: e.target.value
         });
@@ -93,6 +97,7 @@ export default class Chat extends Component {
         this.props.sendMessage({
             projectid: this.state.path,
             name: "락앤롤",
+            userid: this.props.Userid,
             content: this.state.value,
             date: "2017/09/30"
         });
@@ -101,36 +106,56 @@ export default class Chat extends Component {
         }));
     }
 
-    render() {
-        let MessageList 
-        if (this.state.List) {
-            MessageList = this.state.List.map((data, index)=>{
-                return <ChatListBox key={index} name={data.name} content={data.content} date={data.date} />
-            })
-        } else {
-            MessageList = ""
+    clickChatButton(e) {
+        if (e.target.className === "chatButton") {
+            this.setState(() => ({
+                chatMode: !this.state.chatMode
+            }));
         }
+    }
+    render() {
+        let MessageList = ""
+        if (this.state.List) {
+            MessageList = this.state.List.map((data, index) => {
+                return (
+                    <ChatListBox
+                        key={index}
+                        name={data.name}
+                        content={data.content}
+                        date={data.date}
+                        myMessage={this.props.Userid === data.userid}
+                    />
+                );
+            });
+        } 
         return (
-
-            <div className="chatButton">
-                <div className="chatContainer">
+            <div className="chatButton" onClick={this.clickChatButton}>
+                <div
+                    className="chatContainer"
+                    style={{
+                        visibility: this.state.chatMode ? "visible" : "hidden"
+                    }}
+                >
                     <div className="chatBox">
                         <div className="sendBox">
                             <div className="messageList">
-                                 {MessageList}
+                                {MessageList}
                             </div>
-                            <input
-                                className="textInput"
-                                type="text"
-                                value={this.state.value}
-                                placeholder="프리라이더.."
-                                onChange={this.handleChange}
-                            />
-                            <button
-                                className="sendButton"
-                                onClick={this.handleSubmit}
-                                value="보내기"
-                            />
+                            <div className="chatInput">
+                                <input
+                                    className="textInput"
+                                    type="text"
+                                    value={this.state.value}
+                                    placeholder="입력.."
+                                    onChange={this.handleChange}
+                                />
+                                <input
+                                    type="button"
+                                    className="sendButton"
+                                    onClick={this.handleSubmit}
+                                    value="보내기"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -138,3 +163,13 @@ export default class Chat extends Component {
         );
     }
 }
+
+
+function mapState(state) {
+  return {
+    Userid: state.User._id,
+    Project: state.Project
+  };
+}
+
+
