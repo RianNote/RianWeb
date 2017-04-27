@@ -16,13 +16,11 @@ import {
   noteCancle,
   noteOneCancle
 } from "../../../epics/NoteEpic";
-import { graphql, compose, withApollo } from "react-apollo";
 import Infinite from "react-infinite";
 import "./css/timeline.css";
 
 
 
-@withApollo
 @connect(mapState, mapDispatch)
 export default class NoteTimelineContainer extends Component {
   constructor(props) {

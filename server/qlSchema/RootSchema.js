@@ -1,57 +1,38 @@
 import {
   makeExecutableSchema,
-  addMockFunctionsToSchema,
 } from 'graphql-tools';
+import ChatSchema from './Chat/ChatSchema'
+import { RootResolver } from '../resolvers/RootResolver';
+const logger = { log: (e) => console.log(e) }
 
-import resolver from '../resolvers/RootResolver.js';
-const RootSchema = `
-type Query {
-   noteTimeline: JSON
-   channels: [Channel]
-   entry(repoFullName: String!): Repo
-}
+const typeDefs = `
 
-type Mutation {
-   sendMessages(chatRoom:Int!, id: Int!, content: String): Message
-}
+  type Message {
+    name: String!
+    content: String!
+    date: String!
+  }
 
-type Subscription{
-   commentAdded(chatRoom: String!, id: Int!): Message
-}
 
-scalar JSON
+  type Query {
+     chatContents(projectid: String!): [Message]
+  }
 
-type Channel {
-   id: String!                
-   user: String
-}
+  type Subscription{
+     chatSubscription: Message
+  }
 
-type Repo {
-  repoFullName: String!
-  comments(id: Int!): Comment
-}
 
-type Comment{
-  id: Int!
-  content: String
-}
-
-type Message {
-  chatRoom: Int!
-  id: Int!
-  content: String
-}
-
-schema {
-   query: Query
-   mutation: Mutation
-   subscription: Subscription
-}
+  schema {
+     query: Query
+     subscription: Subscription
+  }
 `;
 
 const schema = makeExecutableSchema({ 
-	typeDefs: [RootSchema], 
-	resolver
+	typeDefs, 
+	RootResolver,
+  logger
 });
 
 export { schema }
