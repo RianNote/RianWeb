@@ -1,9 +1,19 @@
 
-#CalendarHeader {
+.calendarHeader {
 	display:flex;
+	flex: 0 0 50px;
 	justify-content: space-around;
 	align-items: center;
 	font-size:20px;
+	background: var(--rianColor);
+}
+
+.CalendarSideMonth {
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 300px;
+	padding: 10px;
+	background-color: var(--rianColor);
 }
 
 .DateMonitor {
@@ -14,36 +24,71 @@
 
 .DateText{
 	text-align:center;
+	font-size: 14px;
+	color: white;
 	margin: 0px;
 }
 
-.DateText span {
-	font-size: 14px;
+.calendarArrow {
+	color: #ffffff;
 }
 
-#SideMonth {
+.sideMonth {
+	flex: 1;
 	display: flex;
-	flex-wrap: wrap;
-	height: auto;
+	flex-direction: column;
+	background: var(--rianColor);
 }
 
-#SideMonth div {
+.sideDays {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	color: white;
+}
+
+.sideWeek {
+	display: flex;
+	flex: 1;
+}
+
+.sideCurrentWeek {
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 5px 0px 0px white, -5px 0px 0px white;
+}
+
+.sideCurrentWeek .sideDays {
+	color: var(--rianColor);
+}
+
+
+
+/* #SideMonth div {
 	width: calc(var(--subWidth) * (1/7));
 	display:flex;
 	align-items: center;
 	justify-content: center;
+} */
+
+/* .week {
+	background: white;
+	color: black;
+	font-weight: bold;
 }
 
+
+.sideSunday {
+	color: #d0021b;
+}
 .uncurrent {
 	color: #dfdfdf;
 }
-
-.today {
+ */
+/* .today {
 	background-color: var(--rianColor);
 	color: white;
 	border-radius: 50%;
-}
+} */
 
-.week {
-	font-weight: bold;
-}

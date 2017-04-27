@@ -1,4 +1,8 @@
+import moment from "moment";
+
 export function renderTime(year, month){
+  // day === undefined or day
+
   const firstDay = new Date(year, month, 1);
   const firstDayDay = firstDay.getDay(); // 0 = sun, 1 = mon, 2 = tues, 
   // 5나 6이면 앞에만 더하고, 아니면 앞에 더하고 앞에 한주 더 추가
@@ -8,15 +12,28 @@ export function renderTime(year, month){
   : -(firstDayDay - 2);
   const backDay = 42 + frontDay;
   let timeArray = [];
-  for(let i = frontDay, n = 0; i < backDay; i++, n++){
-    let targetDate = new Date(year, month, i - 1);
-    let obj = {
-      day: targetDate.getDate(),
-      month: targetDate.getMonth(),
-      year: targetDate.getFullYear(),
-      week: Math.floor(n/7)
+  for(let week = 0; week < 6; week++){
+    let weekArray = [];
+    for(let day = week*7+frontDay; day < (week*7+7+frontDay); day++){
+      let targetDate = new Date(year, month, day-1);
+      let obj = {
+        day: targetDate.getDate(),
+        month: targetDate.getMonth(),
+        year: targetDate.getFullYear(),
+        week
+      }
+      weekArray.push(obj);
     }
-    timeArray.push(obj);
+    timeArray.push(weekArray);
   }
+  console.log("RENDERTIME: ", timeArray);
   return timeArray;
+}
+
+export function getCurrentWeek(first, current){
+  let startingDay = moment(first);
+  let currentDay = moment(current);
+  let differenceDays = currentDay.diff(startingDay, "days");
+  let differenceWeek = Math.floor(differenceDays/7);
+  return differenceWeek;
 }

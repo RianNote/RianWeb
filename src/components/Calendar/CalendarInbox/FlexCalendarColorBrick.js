@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
 import ItemTypes from '../../../constants/ItemTypes';
 import { Button } from 'react-bootstrap';
@@ -37,13 +37,6 @@ function collect(connect, monitor) {
     isDragging: monitor.isDragging()
   };
 }
-
-const propTypes = {
-  text: PropTypes.string.isRequired,
-  // Injected by React DnD:
-  isDragging: PropTypes.bool.isRequired,
-  connectDragSource: PropTypes.func.isRequired
-};
 	
 class Brick extends Component {
   render() {
@@ -62,7 +55,6 @@ class Brick extends Component {
   }
 }
 
-Brick.propTypes = propTypes;
 
 // Export the wrapped component:
 export default DragSource(ItemTypes.COLOR_BRICK, brickSource, collect)(Brick);

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Form, FormGroup, FormControl, Button, Col, Modal, ControlLabel } from 'react-bootstrap';
 import DatePicker from './FlexCalendarDatePicker';
 

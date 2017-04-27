@@ -1,11 +1,10 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
 import CalendarMainHeader from "./CalendarMainHeader";
 import FlexWeekDay from "./FlexWeekDay";
-import { calendarChangeWeek } from "../../../actions/CalendarActions";
+import { calendarMainChangeWeek, calendarMainChangeMonth } from "../../../actions/CalendarActions";
 import { planEpicRequestPost } from "../../../epics/PlanEpic";
-import moment from "moment";
 import "./CalendarMain.css";
 
 @connect(mapState, mapDispatch)
@@ -15,31 +14,17 @@ export default class CalendarMain extends Component {
   }
   
   render() {
-    const { Calendar, calendarChangeWeek } = this.props; 
-    const { currentDay, currentMonth, currentYear, monthDays, week, month, year } = Calendar;
-    console.log(week, monthDays, " :RIAN WEEK ");
-    // const filteredPlan = this.state.filteredPlan; // not updated
-    const weekMarker = (week*7)
-    const showingWeek = monthDays.slice(weekMarker, weekMarker+7);
+    const { Calendar, calendarMainChangeWeek, calendarMainChangeMonth } = this.props; 
+    const { currentDay, currentMonth, currentYear, mainMonthDays, mainWeek, mainMonth, mainYear } = Calendar;
+    // console.log(week, monthDays, " :RIAN WEEK ");
+
     return (
       <div className="middle" id="CalendarMain">
         <CalendarMainHeader 
           Calendar={Calendar}
-          showingWeek={showingWeek}
-          calendarChangeWeek={calendarChangeWeek}
+          calendarMainChangeWeek={calendarMainChangeWeek}
+          calendarMainChangeMonth={calendarMainChangeMonth}
         />        
-        <div className="WeekCalendar">
-          {
-            showingWeek.map((day,k)=>{
-              return <FlexWeekDay
-                key={k}
-                date={day}
-                userId={this.props.User._id}
-              />
-
-            })
-          }
-        </div>
       </div>
     );
   }
@@ -55,12 +40,32 @@ function mapState(state) {
 
 function mapDispatch(dispatch) {
   return {
-    calendarChangeWeek: (date)=>{
-      dispatch(calendarChangeWeek(date));
+    calendarMainChangeWeek: (week, monthDays, month, year)=>{
+      dispatch(calendarMainChangeWeek(week, monthDays, month, year));
+    },
+    calendarMainChangeMonth: (year, month, week, monthDays)=>{
+      dispatch(calendarMainChangeMonth(year, month, week, monthDays));
     }
   }
 }
 
+        // <CalendarMainHeader 
+        //   Calendar={Calendar}
+        //   showingWeek={showingWeek}
+        //   calendarChangeWeek={calendarChangeWeek}
+        // />        
+        // <div className="WeekCalendar">
+        //   {
+        //     showingWeek.map((day,k)=>{
+        //       return <FlexWeekDay
+        //         key={k}
+        //         date={day}
+        //         userId={this.props.User._id}
+        //       />
+
+        //     })
+        //   }
+        // </div>
  // return <FlexWeekDay
  //                key={k}
  //                date={day}
