@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { Glyphicon } from "react-bootstrap";
 import { Calendar as calen } from "calendar";
 
@@ -9,65 +9,41 @@ export default class CalendarHeader extends Component {
 
   changeMonth(direction) {
     const {
-      day,
-      month,
-      year,
-      week
+      sideMonth,
+      sideYear
     } = this.props.Calendar;
-    let nextDay = day,
-      nextMonth = month,
-      nextYear = year
+    let nextMonth = sideMonth,
+      nextYear = sideYear
 
-      // FIX HERE
-    let newDate;
     if (direction === "left") {
-      if (month === 0) {
+      if (sideMonth === 0) {
         nextYear--;
         nextMonth = 11;
       } else {
         nextMonth--;
       }
-      newDate = new Date(nextYear, nextMonth, 0).getDate();
-      newDate = newDate < day
-      ? newDate
-      : day;
-
     } else if (direction === "right") {
-      if (month === 11) {
+      if (sideMonth === 11) {
         nextYear++;
         nextMonth = 0;
       } else {
         nextMonth++;
       }
-      newDate = new Date(nextYear, nextMonth+1, 0).getDate();
-      newDate = newDate < day
-      ? newDate
-      : day ;
     }
-
-    let dateObj = {
-      day: newDate,
-      month: nextMonth,
-      year: nextYear,
-    };
-    console.log(dateObj,"CHANGEMONTH")
-    this.props.calendarChangeMonth(dateObj);
-   
+    this.props.calendarSideChange(nextYear, nextMonth);
   }
 
   render() {
-    const { year, month } = this.props.Calendar;
+    const { sideMonth } = this.props.Calendar;
     return (
-      <div id="CalendarHeader">
-        <Glyphicon glyph="menu-left" onClick={() => this.changeMonth("left")} />
+      <div className="calendarHeader">
+        <Glyphicon className="calendarArrow" glyph="menu-left" onClick={() => this.changeMonth("left")} />
         <div className="DateMonitor">
           <p className="DateText">
-            <span>{year}</span>
-            <br/>
-            { month+1 }
+            { sideMonth+1 }
           </p>
         </div>
-        <Glyphicon glyph="menu-right" onClick={() => this.changeMonth("right")} />
+        <Glyphicon className="calendarArrow" glyph="menu-right" onClick={() => this.changeMonth("right")} />
       </div>
     );
   }

@@ -9,11 +9,13 @@ export default class HeaderProfile extends Component {
     super(props);
   }
   render() {
+    const { User } = this.props;
     return (
       <div className="HeaderProfile">
         <div className="HeaderNotification">
           Noti
         </div>
+        <img className="UserPhoto" src={`${User.picture}`} />
         <div className="UserProfile">
           김덕연
         </div> 

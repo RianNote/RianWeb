@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Resizable from "react-resizable-box";
 import FlexDraggable from "./FlexDraggable";
 

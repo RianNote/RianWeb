@@ -72,6 +72,7 @@
 
 .HeaderProfile {
 	display:flex;
+	align-items: center;
 }
 
 .HeaderNotification {
@@ -82,11 +83,16 @@
 
 }
 
+.UserPhoto {
+	width: 30px;
+	height:  30px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
 .UserProfile{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	flex: 0 0 100px;
 }
 
 

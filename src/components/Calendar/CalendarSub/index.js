@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { calendarRequest, calendarPost, calendarChangeWeek, calendarChangeMonth, calendarSelectDate, calendarToggle } from "../../../actions/CalendarActions";
+import { calendarSideChange } from "../../../actions/CalendarActions";
 import CalendarHeader from "./CalendarHeader";
 import CalendarMonth from "./CalendarMonth";
 import "./CalendarSub.css";
@@ -12,19 +12,17 @@ export default class CalendarSub extends Component {
 	}
 
 	render() {
+		const { User, Calendar, calendarSideChange } = this.props;
 		return (
 			<div className="left" id="CalendarSide">
-				<CalendarHeader
-					User={this.props.User}
-					Calendar={this.props.Calendar}
-					calendarChangeWeek={date=>this.props.calendarChangeWeek.bind(this)(date)}
-					calendarChangeMonth={date=>this.props.calendarChangeMonth.bind(this)(date)}
-					calendarToggle={(kind)=>this.props.calendarToggle.bind(this)(kind)}
-				/>
-				<CalendarMonth
-					// Calendar={this.props.Calendar}
-					// monthDays={this.props.monthDays}
-				/>
+				<div className="CalendarSideMonth">
+					<CalendarHeader
+						User={User}
+						Calendar={Calendar}
+						calendarSideChange={calendarSideChange}
+					/>
+					<CalendarMonth />
+				</div>
 			</div>
 		);
 	}
@@ -39,23 +37,8 @@ function mapState(state) {
 
 function mapDispatch(dispatch) {
 	return {
-		calendarRequest: (user, query)=> {
-			dispatch(calendarRequest(user, query));
-		},
-		calendarPost: (form)=> {
-			dispatch(calendarPost(form));
-		},
-		calendarChangeWeek: (date)=>{
-			dispatch(calendarChangeWeek(date));
-		},
-		calendarChangeMonth: (date)=>{
-			dispatch(calendarChangeMonth(date));
-		},
-		calendarSelectDate: (date)=>{
-			dispatch(calendarSelectDate(date));
-		},
-		calendarToggle: (kind)=>{
-			dispatch(calendarToggle(kind));
+		calendarSideChange: (year, month)=> {
+			dispatch(calendarSideChange(year, month));
 		}
 	};
 }
