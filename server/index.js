@@ -89,51 +89,42 @@ app.use("/api/plan", plans);
 app.use("/api/project", projects);
 app.use("/api/notes", notes);
 
-//GraphQL Server
-import { graphqlExpress, graphiqlExpress } from "graphql-server-express";
-import { SubscriptionManager, PubSub } from "graphql-subscriptions";
-import { schema } from "./qlSchema/RootSchema.js";
-import { createServer } from "http";
-import { SubscriptionServer } from "subscriptions-transport-ws";
-import { pubsub } from "./pubsub/pubsub.js";
+//GraphQL Server 
+import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
+import { SubscriptionManager, PubSub } from 'graphql-subscriptions';
+import { schema } from './qlSchema/schema.js';
+import { createServer } from 'http';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
+import { pubsub } from './pubsub/pubsub.js';
 
-app.use("/api/graphql", bodyParser.json(), graphqlExpress({ schema }));
+app.use('/api/graphql', bodyParser.json(), graphqlExpress({ schema }));
 
-app.use(
-  "/api/graphiql",
-  graphiqlExpress({
-    endpointURL: "/api/graphql"
-  })
-);
+app.use('/api/graphiql', graphiqlExpress({
+  endpointURL: '/api/graphql'
+}));
 
 const subscriptionManager = new SubscriptionManager({
   schema,
   pubsub: pubsub,
   setupFunctions: {
     //어떤 서브스크립션에 대한 검증인가
-    chatSubscription: (options, args) => ({
-      //이렇게 리턴으로 서브스크립션 key를 가지고 있는 옵젝을 리턴해야함.
-      chatSubscription: {
-        filter: newComment => {
+    commentAdded: (options, args) => ({ //이렇게 리턴으로 서브스크립션 key를 가지고 있는 옵젝을 리턴해야함.
+      commentAdded: {
+        filter: comment => {
           //comment로 들어오는게 지금 pubsub으로 보내야되는 값
           //args는 최초에 서브스크립션을 찍었을때 들어온 variables들.
-          console.log(
-            "Filter",
-            newComment.projectid === args.projectid,
-            newComment,
-            args
-          );
-          if (newComment.projectid === args.projectid) {
-            return true;
+          console.log("Filter", comment.commentAdded.chatRoom === args.chatRoom, comment, args)
+          if (comment.commentAdded.chatRoom === args.chatRoom) { 
+            return true 
           } else {
-            return false;
-          }
+            return false
+          } 
+
         }
       }
     })
   }
 });
-
 // chatlogs endpoint
 passportRoutes(app, passport);
 
