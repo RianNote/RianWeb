@@ -1,25 +1,20 @@
 import { pubsub } from '../pubsub/pubsub.js';
-import { merge } from 'lodash';
-const GraphQLJSON = require('graphql-type-json');
 
-const entry2 = [{
-  repoFullName: "test",
-  comments: [{
-    id: 1,
-    content: 'soccer',
-  }]
-}];
-
-
-const RootResolver = {
+export const resolvers = {
 
   Query: {
-    entry(obj, args, context){
-      console.log('Repo', obj, args, context)
+    chatContents(obj, args, context){
+      console.log('Chat', obj, args, context)
       let newObj = {}
-      newObj.repoFullName = "Yes I am Docker"
-      return newObj
-    }
+      newObj.name = "TestName"
+      newObj.content = "TestContent"
+      newObj.date = "TestDate"
+      let newObj2 = {}
+      newObj2.name = "TestName"
+      newObj2.content = "TestContent"
+      newObj2.date = "TestDate"
+      return [newObj, newObj2]
+    },
   },
 
   Mutation: {
@@ -45,21 +40,12 @@ const RootResolver = {
     }
   },
 
-  JSON: GraphQLJSON,
-
-  Repo: {
-    comments(obj, args, context){
-      console.log('comments', obj, args, context)
-      var newObj = {}
-      newObj.id = args.id
-      newObj.content = "YEs Im success"
-      return newObj
-    }
-  },
-
 };
 
-export default merge(RootResolver)
+
+
+
+
 
 
 
