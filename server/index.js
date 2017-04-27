@@ -108,13 +108,13 @@ const subscriptionManager = new SubscriptionManager({
   pubsub: pubsub,
   setupFunctions: {
     //어떤 서브스크립션에 대한 검증인가
-    commentAdded: (options, args) => ({ //이렇게 리턴으로 서브스크립션 key를 가지고 있는 옵젝을 리턴해야함.
-      commentAdded: {
-        filter: comment => {
+    chatSubscription: (options, args) => ({ //이렇게 리턴으로 서브스크립션 key를 가지고 있는 옵젝을 리턴해야함.
+      chatSubscription: {
+        filter: newMessage => {
           //comment로 들어오는게 지금 pubsub으로 보내야되는 값
           //args는 최초에 서브스크립션을 찍었을때 들어온 variables들.
-          console.log("Filter", comment.commentAdded.chatRoom === args.chatRoom, comment, args)
-          if (comment.commentAdded.chatRoom === args.chatRoom) { 
+          console.log("Filter", newMessage.chatSubscription.projectid === args.projectid, newMessage, args)
+          if (newMessage.chatSubscription.projectid === args.projectid) { 
             return true 
           } else {
             return false

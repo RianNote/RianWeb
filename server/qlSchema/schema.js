@@ -11,11 +11,11 @@ const RootQuery = `
   }
 
   type Mutation {
-     sendMessages(chatRoom:Int!, id: Int!, content: String): Message
+     sendMessage(projectid: String!, name: String!, content: String!, date: String!): Message
   }
 
-  type Subscription{
-     commentAdded(chatRoom: String!, id: Int!): Message
+  type Subscription {
+     chatSubscription(projectid: String!): Message
   }
 `
 
