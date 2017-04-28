@@ -6,7 +6,18 @@ import { Glyphicon } from "react-bootstrap";
 export default class CalendarMainHeader extends Component {
 	constructor(props) {
 		super(props);
-		console.log(props, "header");
+		this.resetDate = this.resetDate.bind(this);
+	}
+
+	resetDate() {
+		const { currentYear, currentMonth, currentWeek } = this.props.Calendar;
+		const nextMonthDays = renderTime(currentYear, currentMonth);
+		this.props.calendarMainChangeMonth(
+			currentYear,
+			currentMonth,
+			currentWeek,
+			nextMonthDays
+		);
 	}
 
 	changeWeek(direction) {
@@ -21,12 +32,20 @@ export default class CalendarMainHeader extends Component {
 		let nextMonth = mainMonth;
 		let nextYear = mainYear;
 		const currentWed = mainMonthDays[mainWeek][3];
-		const currentWedDate = new Date(currentWed.year, currentWed.month, currentWed.day);
+		const currentWedDate = new Date(
+			currentWed.year,
+			currentWed.month,
+			currentWed.day
+		);
 		console.log(currentWed, currentWedDate, "CURRENT WED");
 		if (direction === "left") {
-			const nextWed = new Date(currentWed.year, currentWed.month, currentWed.day-7);
+			const nextWed = new Date(
+				currentWed.year,
+				currentWed.month,
+				currentWed.day - 7
+			);
 			const nextWedMonth = nextWed.getMonth();
-			if(nextWedMonth === currentWed.month){
+			if (nextWedMonth === currentWed.month) {
 				nextWeek--;
 				calendarMainChangeWeek(nextWeek, mainMonthDays, mainMonth, mainYear);
 			} else {
@@ -34,8 +53,11 @@ export default class CalendarMainHeader extends Component {
 				nextMonth = nextWed.getMonth();
 				let nextWedDay = nextWed.getDate();
 				let nextMonthDays = renderTime(nextYear, nextMonth);
-				for(let i = 5; i>0; i--){
-					if(nextWedDay === nextMonthDays[i][3].day && nextMonth === nextMonthDays[i][3].month){
+				for (let i = 5; i > 0; i--) {
+					if (
+						nextWedDay === nextMonthDays[i][3].day &&
+						nextMonth === nextMonthDays[i][3].month
+					) {
 						nextWeek = i;
 						break;
 					}
@@ -43,9 +65,13 @@ export default class CalendarMainHeader extends Component {
 				calendarMainChangeMonth(nextYear, nextMonth, nextWeek, nextMonthDays);
 			}
 		} else if (direction === "right") {
-			const nextWed = new Date(currentWed.year, currentWed.month, currentWed.day+7);
+			const nextWed = new Date(
+				currentWed.year,
+				currentWed.month,
+				currentWed.day + 7
+			);
 			const nextWedMonth = nextWed.getMonth();
-			if(nextWedMonth === currentWed.month){
+			if (nextWedMonth === currentWed.month) {
 				nextWeek++;
 				calendarMainChangeWeek(nextWeek, mainMonthDays, mainMonth, mainYear);
 			} else {
@@ -53,8 +79,11 @@ export default class CalendarMainHeader extends Component {
 				nextMonth = nextWed.getMonth();
 				let nextWedDay = nextWed.getDate();
 				let nextMonthDays = renderTime(nextYear, nextMonth);
-				for(let i = 0; i<6; i++){
-					if(nextWedDay === nextMonthDays[i][3].day && nextMonth === nextMonthDays[i][3].month){
+				for (let i = 0; i < 6; i++) {
+					if (
+						nextWedDay === nextMonthDays[i][3].day &&
+						nextMonth === nextMonthDays[i][3].month
+					) {
 						nextWeek = i;
 						break;
 					}
@@ -87,7 +116,7 @@ export default class CalendarMainHeader extends Component {
 							glyph="menu-left"
 							onClick={() => this.changeWeek("left")}
 						/>
-						<div className="GoToday"> 오늘 </div>
+						<div className="GoToday" onClick={() => this.resetDate()}> 오늘 </div>
 						<Glyphicon
 							glyph="menu-right"
 							onClick={() => this.changeWeek("right")}

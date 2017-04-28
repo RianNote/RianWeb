@@ -53,14 +53,22 @@
 	flex: 1;
 }
 
-.sideCurrentWeek {
+.sideShowingWeek {
 	background-color: white;
 	border-radius: 20px;
 	box-shadow: 5px 0px 0px white, -5px 0px 0px white;
 }
 
-.sideCurrentWeek .sideDays {
-	color: var(--rianColor);
+.sideShowingWeek .sideDays {
+	color: black;
+}
+
+.sideDays.sideSunday {
+	color: #d0021b;
+}
+
+.sideDays.uncurrent {
+	color: #dfdfdf;
 }
 
 

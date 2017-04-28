@@ -34,12 +34,14 @@ export default class CalendarHeader extends Component {
   }
 
   render() {
-    const { sideMonth } = this.props.Calendar;
+    const { sideMonth, sideYear } = this.props.Calendar;
     return (
       <div className="calendarHeader">
         <Glyphicon className="calendarArrow" glyph="menu-left" onClick={() => this.changeMonth("left")} />
         <div className="DateMonitor">
           <p className="DateText">
+            { sideYear }
+            <br />
             { sideMonth+1 }
           </p>
         </div>

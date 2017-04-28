@@ -14,38 +14,30 @@ export default class ProjectCalendar extends Component {
       return false;
     }
   }
-
+  componentWillUnmount() {
+    const { currentYear, currentMonth } = this.props.Calendar;
+    this.props.calendarSideChange(currentYear, currentMonth)
+  }
   changeMonth(direction) {
-    const { day, month, year, week } = this.props.Calendar;
-    let nextDay = day, nextMonth = month, nextYear = year;
-    let newDate;
+    const { sideMonth, sideYear } = this.props.Calendar;
+    let nextMonth = sideMonth, nextYear = sideYear;
     if (direction === "left") {
-      if (month === 0) {
+      if (sideMonth === 0) {
         nextYear--;
         nextMonth = 11;
       } else {
         nextMonth--;
       }
-      newDate = new Date(nextYear, nextMonth, 0).getDate();
-      newDate = newDate < day ? newDate : day;
     } else if (direction === "right") {
-      if (month === 11) {
+      if (sideMonth === 11) {
         nextYear++;
         nextMonth = 0;
       } else {
         nextMonth++;
       }
-      newDate = new Date(nextYear, nextMonth + 1, 0).getDate();
-      newDate = newDate < day ? newDate : day;
     }
-    
-    let dateObj = {
-      day: newDate,
-      month: nextMonth,
-      year: nextYear
-    };
 
-    this.props.calendarChangeMonth(dateObj);
+    this.props.calendarSideChange(nextYear, nextMonth);
   }
 
   render() {

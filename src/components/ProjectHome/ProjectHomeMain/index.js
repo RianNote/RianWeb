@@ -6,8 +6,7 @@ import ProjectTodo from "./ProjectTodo/ProjectTodo";
 import MOCK_FILE from "../MockData/MOCK_FILE";
 import MOCK_TODO from "../MockData/MOCK_TODO";
 import {
-  calendarChangeWeek,
-  calendarChangeMonth
+  calendarSideChange
 } from "../../../actions/CalendarActions";
 import "./ProjectHomeMain.css";
 
@@ -20,15 +19,13 @@ export default class ProjectHomeMain extends Component {
     const {
       Calendar,
       Project,
-      calendarChangeWeek,
-      calendarChangeMonth
+      calendarSideChange
     } = this.props;
     return (
       <div className="middle ProjectHomeMain">
         <ProjectCalendar
           Calendar={Calendar}
-          calendarChangeWeek={calendarChangeWeek}
-          calendarChangeMonth={calendarChangeMonth}
+          calendarSideChange={calendarSideChange}
         />
         <div className="projectInfo">
           <ProjectFile Data={MOCK_FILE} />
@@ -49,11 +46,8 @@ function mapState(state) {
 
 function mapDispatch(dispatch) {
   return {
-    calendarChangeWeek: date => {
-      dispatch(calendarChangeWeek(date));
-    },
-    calendarChangeMonth: date => {
-      dispatch(calendarChangeMonth(date));
+    calendarSideChange: (year, month)=> {
+      dispatch(calendarSideChange(year, month));
     }
-  };
+  }
 }
