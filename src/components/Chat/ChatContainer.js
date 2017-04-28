@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Chatview from "react-chatview-es6"
 import ChatListBox from "./ChatListBox";
 import "./Chatstyle.css";
 import { graphql, compose } from "react-apollo";
@@ -33,6 +34,11 @@ const sendChatMessage = graphql(CHAT_SEND, {
     })
 });
 
+const mapState = state => ({
+    Userid: state.User._id,
+    Project: state.Project
+});
+
 @compose(getPastChat, sendChatMessage)
 @connect(mapState)
 export default class Chat extends Component {
@@ -43,11 +49,13 @@ export default class Chat extends Component {
             List: null,
             value: "",
             path: this.props.match.params.projectId,
-            subscriptionIng: false
+            subscriptionIng: false,
+            height: '300px'
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.clickChatButton = this.clickChatButton.bind(this);
+        this.loadMoreMessage = this.loadMoreMessage.bind(this);
     }
 
     componentDidMount() {
@@ -79,7 +87,6 @@ export default class Chat extends Component {
                 subscriptionIng: true
             }));
         }
-        console.log("getPastChat.chatContents", getPastChat.chatContents);
         this.setState(() => ({
             List: getPastChat.chatContents
         }));
@@ -113,8 +120,22 @@ export default class Chat extends Component {
             }));
         }
     }
+
+    loadMoreMessage(){
+        return new Promise((resolve, reject)=>{
+            this.setState((prevState)=>({
+                List: [...prevState.List, ...prevState.List]
+            }))
+            resolve()
+        })
+
+
+      
+    }
+
+ 
     render() {
-        let MessageList = ""
+        let MessageList = false;
         if (this.state.List) {
             MessageList = this.state.List.map((data, index) => {
                 return (
@@ -127,7 +148,7 @@ export default class Chat extends Component {
                     />
                 );
             });
-        } 
+        }
         return (
             <div className="chatButton" onClick={this.clickChatButton}>
                 <div
@@ -136,11 +157,19 @@ export default class Chat extends Component {
                         visibility: this.state.chatMode ? "visible" : "hidden"
                     }}
                 >
-                    <div className="chatBox">
+                    <div
+                        className="chatBox"
+                    >
                         <div className="sendBox">
-                            <div className="messageList">
-                                {MessageList}
-                            </div>
+                            {MessageList &&
+                                <Chatview
+                                    className="messageList"
+                                    flipped={true}
+                                    scrollLoadThreshold={50}
+                                    onInfiniteLoad={this.loadMoreMessage}>
+                                     {MessageList}
+                                </Chatview>
+                            }
                             <div className="chatInput">
                                 <input
                                     className="textInput"
@@ -163,13 +192,3 @@ export default class Chat extends Component {
         );
     }
 }
-
-
-function mapState(state) {
-  return {
-    Userid: state.User._id,
-    Project: state.Project
-  };
-}
-
-
