@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { calendarSideChange } from "../../../actions/CalendarActions";
+import { calendarSideChange, calendarMainChangeWeek, calendarMainChangeMonth } from "../../../actions/CalendarActions";
 import CalendarHeader from "./CalendarHeader";
 import CalendarMonth from "./CalendarMonth";
 import "./CalendarSub.css";
@@ -12,7 +12,7 @@ export default class CalendarSub extends Component {
 	}
 
 	render() {
-		const { User, Calendar, calendarSideChange } = this.props;
+		const { User, Calendar, calendarSideChange, calendarMainChangeWeek, calendarMainChangeMonth } = this.props;
 		return (
 			<div className="left" id="CalendarSide">
 				<div className="CalendarSideMonth">
@@ -21,7 +21,11 @@ export default class CalendarSub extends Component {
 						Calendar={Calendar}
 						calendarSideChange={calendarSideChange}
 					/>
-					<CalendarMonth />
+					<CalendarMonth 
+						Calendar={Calendar}
+						calendarMainChangeWeek={calendarMainChangeWeek}
+						calendarMainChangeMonth={calendarMainChangeMonth}
+					/>
 				</div>
 			</div>
 		);
@@ -39,6 +43,12 @@ function mapDispatch(dispatch) {
 	return {
 		calendarSideChange: (year, month)=> {
 			dispatch(calendarSideChange(year, month));
-		}
+		},
+    calendarMainChangeWeek: (week, monthDays, month, year)=>{
+      dispatch(calendarMainChangeWeek(week, monthDays, month, year));
+    },
+    calendarMainChangeMonth: (year, month, week, monthDays)=>{
+      dispatch(calendarMainChangeMonth(year, month, week, monthDays));
+    }
 	};
 }

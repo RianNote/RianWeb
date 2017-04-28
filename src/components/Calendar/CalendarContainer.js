@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import CalendarSub from "./CalendarSub";
 import CalendarMain from "./CalendarMain";
 import CalendarInbox from "./CalendarInbox";
+import { calendarMainChangeMonth } from "../../actions/CalendarActions";
+import { renderTime } from "../../lib/calendarUtils";
+
 import "./Calendar.css";
 
 @connect(mapState, mapDispatch)
@@ -10,13 +13,24 @@ export default class Calendar extends Component {
   constructor(props) {
     super(props);
   }
+
+  componentWillUnmount() {
+    const { currentYear, currentMonth, currentWeek } = this.props.Calendar;
+    const nextMonthDays = renderTime(currentYear, currentMonth);
+    this.props.calendarMainChangeMonth(
+      currentYear,
+      currentMonth,
+      currentWeek,
+      nextMonthDays
+    );
+  }
+
   render() {
-    const props = this.props;
     return (
       <div className="body-3-calendar">
-        <CalendarSub  />
-        <CalendarMain {...props} />
-        <CalendarInbox {...props} />
+        <CalendarSub />
+        <CalendarMain />
+        <CalendarInbox />
       </div>
     );
   }
@@ -36,6 +50,9 @@ function mapDispatch(dispatch) {
     },
     projectEpicCancleData: () => {
       dispatch(projectEpicCancleData());
+    },
+    calendarMainChangeMonth: (year, month, week, monthDays) => {
+      dispatch(calendarMainChangeMonth(year, month, week, monthDays));
     }
-  }
+  };
 }
