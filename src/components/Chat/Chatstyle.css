@@ -1,3 +1,4 @@
+
 .chatContainer {
 	z-index: 10;
 	position: relative;
@@ -55,6 +56,7 @@
 .chatMessagePhoto {
 	display: flex;
 	flex: 0 0 35px;
+	margin-top: -4px;
 }
 
 .chatUserPhoto {
@@ -67,18 +69,22 @@
 	display: flex;
 	flex: 6;
 	flex-direction: column;
+	margin-left: 3px;
 }
 
 .chatMessageName {
 	display: flex;
 	flex: 0 0 20px;
 	font-weight: bold;
+	color: #4a4a4a;
 }
 
 .chatMessageText {
 	display: flex;
 	flex: 0 0 20px;
 	word-break: break-all;
+	color: #4a4a4a;
+	margin-top: 3px;
 }
 
 .chatMessageText.mine {
@@ -90,6 +96,8 @@
 	flex: 0 0 20px;
 	color: grey;
 	font-size: 10px;
+	color: #9b9b9b;
+	margin-top: -2px;
 }
 
 .chatMessageDate.mine {

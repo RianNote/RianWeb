@@ -51,7 +51,8 @@ export default class Chat extends Component {
             value: "",
             path: this.props.match.params.projectId,
             subscriptionIng: false,
-            chatheight: "300px"
+            chatheight: "220px",
+            handlerheight: "264px"
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -136,7 +137,8 @@ export default class Chat extends Component {
 
     resizeCall(a, b, dom) {
         this.setState(() => ({
-            chatheight: dom.clientHeight + "px"
+            chatheight: dom.clientHeight + "px",
+            handlerheight: dom.clientHeight + 44 + "px"
         }));
     }
 
@@ -170,15 +172,7 @@ export default class Chat extends Component {
                                     className="reseizable"
                                     handlerStyles={{
                                         bottom: {
-                                            top: parseInt(
-                                                this.state.chatheight.slice(
-                                                    0,
-                                                    this.state.chatheight
-                                                        .length - 2
-                                                )
-                                            ) +
-                                                44 +
-                                                "px",
+                                            top: this.state.handlerheight,
                                             height: "20px"
                                         }
                                     }}
@@ -192,8 +186,9 @@ export default class Chat extends Component {
                                         bottomLeft: false,
                                         topLeft: false
                                     }}
-                                    height={300}
-                                    maxHeight={800}
+                                    height={220}
+                                    minHeight={220}
+                                    maxHeight={440}
                                     onResize={this.resizeCall}
                                 >
                                     <Chatview

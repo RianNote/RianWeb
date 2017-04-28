@@ -132,6 +132,7 @@
     "prettier": "^1.1.0",
     "prop-types": "^15.5.8",
     "qrcode.react": "^0.6.1",
+    "quill": "^1.2.4",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-apollo": "^1.0.0",
@@ -144,6 +145,7 @@
     "react-dom": "^15.4.2",
     "react-file-download": "^0.3.2",
     "react-fileupload-progress": "^0.4.0",
+    "react-fullscreen": "^0.1.0",
     "react-helmet": "^4.0.0",
     "react-infinite": "^0.10.0",
     "react-infinite-any-height": "^1.0.4",
@@ -172,7 +174,9 @@
     "redux-slider-monitor": "^1.0.7",
     "redux-socket.io": "^1.3.1",
     "redux-thunk": "^2.2.0",
+    "rich-text": "^3.1.0",
     "rxjs": "^5.2.0",
+    "sharedb": "^1.0.0-beta.7",
     "slate": "^0.16.26",
     "smooth-scroll": "github:cferdinandi/smooth-scroll",
     "smoothy": "^1.1.2",
@@ -183,7 +187,9 @@
     "sweet-scroll": "^2.2.0",
     "tls": "^0.0.1",
     "url": "^0.11.0",
-    "utf-8-validate": "^3.0.1"
+    "utf-8-validate": "^3.0.1",
+    "websocket-json-stream": "^0.0.3",
+    "ws": "^2.3.1"
   },
   "scripts": {
     "start": "node scripts/start.js",

@@ -15,7 +15,17 @@ export const resolvers = {
       newObj2.userid = "test12314^&*%"
       newObj2.content = "저는 테스트를 좋아하지 않습니다"
       newObj2.date = "2015/12/30"
-      return [newObj, newObj2]
+      let newObj3 = {}
+      newObj3.name = "문규Test3"
+      newObj3.userid = "test12314^&*%"
+      newObj3.content = "저는 테스트를 사랑합니다"
+      newObj3.date = "2014/1/30"
+      let newObj4 = {}
+      newObj4.name = "국민Test4"
+      newObj4.userid = "test12314^&*%"
+      newObj4.content = "저는 테스트와 함께 시작합니다"
+      newObj4.date = "2013/4/30"
+      return [newObj, newObj2, newObj3, newObj4]
     },
   },
 
