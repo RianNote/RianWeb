@@ -1,16 +1,16 @@
 .chatContainer {
 	z-index: 10;
 	position: relative;
-    right: 280px;
+    right: 275px;
     top: 40px;
 	width:300px;
 	border: thin solid var(--rianColor);
+	border-bottom: 20px solid var(--rianColor);
 	border-radius: 10px;
 }
 
 .messageList {
 	padding: 5px;
-	max-height: 300px;
     overflow: overlay;
 }
 .chatBox {
