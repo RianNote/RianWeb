@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding-left: 50px;
+  padding-right: 50px;
+
 }
 .editorContainer {
   flex: 1;

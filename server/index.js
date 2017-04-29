@@ -144,26 +144,58 @@ app.get("/", (req, res) => {
 app.get("/project/*", isLoggedIn, isMember, handleRender);
 app.get("*", isLoggedIn, isUser, handleRender);
 
-// start app
-const server = createServer(app);
-server.listen(serverConfig.port, error => {
-  if (!error) {
-    console.log(
-      `MERN is running on port: ${serverConfig.port}! Build something amazing!`
-    ); // eslint-disable-line
+//ShareDB
+import ShareDB from 'sharedb';
+import richText from 'rich-text';
+import WebSocket from 'ws';
+import WebSocketJSONStream from 'websocket-json-stream';
+
+ShareDB.types.register(richText.type);
+var backend = new ShareDB();
+var connection = backend.connect();
+var doc = connection.get('examples', 'richtext');
+doc.fetch(function(err) {
+  if (err) throw err;
+  if (doc.type === null) {
+    doc.create([{insert: 'Hi!'}], 'rich-text', callback);
+    return;
   }
-  new SubscriptionServer(
-    {
-      subscriptionManager: subscriptionManager,
-      onConnect: () => {
-        console.log("Subscription Connect Success");
-      }
-    },
-    {
-      server: server,
-      path: "/api/subscriptions"
-    }
-  );
+  callback()
+
 });
+
+function callback(){
+  const server = createServer(app);
+  // Connect any incoming WebSocket connection to ShareDB
+  var wss = new WebSocket.Server({
+    perMessageDeflate: false,
+    port: 8080
+  });
+  wss.on('connection', function(ws, req) {
+    console.log("ShareDB WebSocket Success")
+    var stream = new WebSocketJSONStream(ws);
+    backend.listen(stream);
+  });
+
+  server.listen(serverConfig.port, error => {
+    if (!error) {
+      console.log(
+        `Rian is running on port: ${serverConfig.port}! Fuck you`
+      ); // eslint-disable-line
+    }
+    new SubscriptionServer(
+      {
+        subscriptionManager: subscriptionManager,
+        onConnect: () => {
+          console.log("Subscription Connect Success");
+        }
+      },
+      {
+        server: server,
+        path: "/api/subscriptions"
+      }
+    );
+  });
+}
 
 export default app;
