@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import Resizable from "react-resizable-box";
 import { connect } from "react-redux";
-import Chatview from "react-chatview-es6"
+import Chatview from "./react-resizeable-chatview/src/react-chatview.js";
 import ChatListBox from "./ChatListBox";
 import "./Chatstyle.css";
 import { graphql, compose } from "react-apollo";
@@ -50,12 +51,13 @@ export default class Chat extends Component {
             value: "",
             path: this.props.match.params.projectId,
             subscriptionIng: false,
-            height: '300px'
+            chatheight: "300px"
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.clickChatButton = this.clickChatButton.bind(this);
         this.loadMoreMessage = this.loadMoreMessage.bind(this);
+        this.resizeCall = this.resizeCall.bind(this);
     }
 
     componentDidMount() {
@@ -92,6 +94,8 @@ export default class Chat extends Component {
         }));
     }
 
+    componentDidUpdate(prevProps, prevState) {}
+
     handleChange(e) {
         this.setState({
             value: e.target.value
@@ -121,19 +125,21 @@ export default class Chat extends Component {
         }
     }
 
-    loadMoreMessage(){
-        return new Promise((resolve, reject)=>{
-            this.setState((prevState)=>({
+    loadMoreMessage() {
+        return new Promise((resolve, reject) => {
+            this.setState(prevState => ({
                 List: [...prevState.List, ...prevState.List]
-            }))
-            resolve()
-        })
-
-
-      
+            }));
+            resolve();
+        });
     }
 
- 
+    resizeCall(a, b, dom) {
+        this.setState(() => ({
+            chatheight: dom.clientHeight + "px"
+        }));
+    }
+
     render() {
         let MessageList = false;
         if (this.state.List) {
@@ -162,14 +168,46 @@ export default class Chat extends Component {
                     >
                         <div className="sendBox">
                             {MessageList &&
-                                <Chatview
-                                    className="messageList"
-                                    flipped={true}
-                                    scrollLoadThreshold={50}
-                                    onInfiniteLoad={this.loadMoreMessage}>
-                                     {MessageList}
-                                </Chatview>
-                            }
+                                <Resizable
+                                    className="reseizable"
+                                    handlerStyles={{
+                                        bottom: {
+                                            top: parseInt(
+                                                this.state.chatheight.slice(
+                                                    0,
+                                                    this.state.chatheight
+                                                        .length - 2
+                                                )
+                                            ) +
+                                                44 +
+                                                "px",
+                                            height: "20px"
+                                        }
+                                    }}
+                                    enable={{
+                                        top: false,
+                                        right: false,
+                                        bottom: true,
+                                        left: false,
+                                        topRight: false,
+                                        bottomRight: false,
+                                        bottomLeft: false,
+                                        topLeft: false
+                                    }}
+                                    height={300}
+                                    maxHeight={800}
+                                    onResize={this.resizeCall}
+                                >
+                                    <Chatview
+                                        className="messageList"
+                                        maxHeight={this.state.chatheight}
+                                        flipped={true}
+                                        scrollLoadThreshold={50}
+                                        onInfiniteLoad={this.loadMoreMessage}
+                                    >
+                                        {MessageList}
+                                    </Chatview>
+                                </Resizable>}
                             <div className="chatInput">
                                 <input
                                     className="textInput"
