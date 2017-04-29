@@ -138,6 +138,7 @@
     "react-bootstrap": "^0.30.7",
     "react-bootstrap-date-picker": "^4.0.0",
     "react-chartjs-2": "^2.0.5",
+    "react-chatview-es6": "^0.2.0",
     "react-color": "^2.11.4",
     "react-dnd": "^2.2.4",
     "react-dnd-html5-backend": "^2.2.4",

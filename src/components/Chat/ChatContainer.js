@@ -163,7 +163,9 @@ export default class Chat extends Component {
                         visibility: this.state.chatMode ? "visible" : "hidden"
                     }}
                 >
-                    <div className="chatBox">
+                    <div
+                        className="chatBox"
+                    >
                         <div className="sendBox">
                             {MessageList &&
                                 <Resizable
